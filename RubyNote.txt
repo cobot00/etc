@@ -1,0 +1,15 @@
+○Ruby覚書
+
+[rbenv]
+brew install rbenv
+brew install ruby-build
+brew install rbenv-gemset
+brew install rbenv-gem-rehash
+
+[ruby]
+rbenv install -l | grep 2.1.0
+rbenv install 2.1.0-dev
+
+rvm list known
+
+rvm install ruby-2.1.1 --default
