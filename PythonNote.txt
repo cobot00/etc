@@ -20,10 +20,28 @@ python -V
 [pip]
 curl -kL https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
 
+
+[環境設定]
+・PATH設定(Windows)
+%PYTHON3_HOME%
+%PYTHON3_HOME%\Lib\site-packages
+%PYTHON3_HOME%\Scripts
+%PYTHON3_HOME%\Tools\Scripts
+
+%PYTHON3_HOME%;%PYTHON3_HOME%\Lib\site-packages;%PYTHON3_HOME%\Scripts;%PYTHON3_HOME%\Tools\Scripts
+
+
+[バージョン指定起動]
+・Windows環境(Python 3.3以降)
+py.exe -2 (Pythonファイル)
+py.exe -3 (Pythonファイル)
+
+
 [便利ライブラリ]
 pip3 install numpy
 pip3 install pep8
 pip3 install pyflakes
+
 
 [pep8]
 ・バージョン確認
@@ -34,3 +52,21 @@ pep8 [Pythonソースコード]
 
 ex.
 pep8 practice.py
+
+
+[nose]
+・インストール
+easy_install nose
+easy_install-3.4 nose
+
+・バージョン確認
+nosetests -V
+
+・実行コマンド
+nosetest -v -s (ターゲット)
+
+-v: 結果レポートを表示
+-s: 標準出力の内容を表示
+
+・命名規則
+クラス、メソッドはtest、Testなどを接頭辞に持つこと。
