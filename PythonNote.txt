@@ -1,0 +1,36 @@
+○Python覚書
+
+[install]
+brew update
+brew install python3
+pip3 install --upgrade setuptools
+pip3 install --upgrade pip
+brew linkapps
+
+※sudoが必要かも
+
+
+
+[インストール確認]
+python3 -V
+
+※以下のコマンドでは2系のバージョンが表示される
+python -V
+
+[pip]
+curl -kL https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
+
+[便利ライブラリ]
+pip3 install numpy
+pip3 install pep8
+pip3 install pyflakes
+
+[pep8]
+・バージョン確認
+pep8 --version
+
+・使用方法
+pep8 [Pythonソースコード]
+
+ex.
+pep8 practice.py
