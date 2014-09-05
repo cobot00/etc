@@ -1,0 +1,19 @@
+○MQTT 覚書
+
+[インストール]
+brew install mosquitto
+
+・インストール先ディレクトリ
+/usr/local/Cellar/mosquitto
+
+・実行
+mosquitto
+
+・symlink エラー
+Error: Could not symlink share/man/man7/mqtt.7
+/usr/local/share/man/man7 is not writable.
+
+解決➡
+sudo chgrp -R staff /usr/local
+sudo chown -R 775 /usr/local
+sudo chmod -R ugo+w /usr/local
