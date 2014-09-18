@@ -13,6 +13,21 @@ sqlite3 (database_faile_path)
 ・テーブル一覧
 .table
 
+・ヘルプ
+.help
+
+・出力モード
+.mode
+.mode csv
+
+・ヘッダー行出力ON/OFF
+.header [on/off]
+
+・出力先
+.outpu stdout
+.output (file_name)
+
+
 [列型]
 INTEGER: 符号付整数。1、2、3、4、6 or 8 バイトで格納。
 REAL: 浮動小数点数。8バイトで格納。
