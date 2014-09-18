@@ -8,19 +8,6 @@ echo 'export PATH="$PATH:/Applications/eclipse/sdk/platform-tools"'　>> ~/.bash
 ・動作確認
 adb version
 
-[SQLite]
-・起動
-sqlite3 [database_name]
-
-ex.
-sqlite3 practice
-
-・テーブル一覧
-.table
-
-・終了
-.quit
-
 
 [Graphical Layoutが表示されない]
 ・描画APIレベルを下げる
