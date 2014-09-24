@@ -44,6 +44,13 @@ CREATE TABLE data_types(
     create_at TIMESTAMP  DEFAULT (DATETIME('now','localtime'))
 );
 
+CREATE TABLE simple_memo(
+    _id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    detail TEXT NOT NULL,
+    update_at TIMESTAMP  DEFAULT (DATETIME('now','localtime'))
+);
+
 [組込関数]
 SELECT current_date;
 SELECT current_time;
