@@ -1,0 +1,68 @@
+○MongoDB覚書
+
+[DB起動方法]
+[MONGO_HOME]/bin/mongod --dbpath (DBフォルダパス)
+
+ex.
+[MONGO_HOME]/bin/mongod --dbpath "D:\application\MongoDB 2.6 Standard\data\db"
+
+
+[シェル起動]
+mongo
+
+
+[基本的なコマンド]
+・DB選択
+use (DB_NAME)
+
+ex.
+use practice
+
+・DB一覧
+show dbs
+
+・コレクション一覧
+show collections
+
+
+[データ操作]
+・データ登録
+db.[collection].save([JSONデータ]);
+
+ex.
+db.hoges.save({title:"1", com:"hoge"})
+db.hoges.save({title:"for_remove", com:"hoge"})
+
+
+・データ削除
+db.[collection].remove({条件});
+
+ex.
+db.hoges.remove({title:"for_remove"});
+
+
+・データ検索
+db.[collection].find();
+db.[collection].find({条件});
+
+ex.
+db.hoges.find();
+db.hoges.find({title:"1"});
+
+
+・データ件数
+db.[collection].count();
+
+ex.
+db.hoges.count();
+
+・Collectionの削除
+db.[collection].drop();
+
+ex.
+db.removes.save({title:"ex", com:"tekitou"})
+db.removes.drop();
+
+・Cursor操作
+db.hoges.find().forEach()
+db.hoges.find().forEach(function(each) {print("title: " + each.title );});
