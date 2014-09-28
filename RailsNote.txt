@@ -1,4 +1,4 @@
-【railsコマンド一覧】
+[railsコマンド一覧]
 Usage: rails COMMAND [ARGS]
 
 The most common rails commands are:
@@ -17,14 +17,40 @@ In addition to those, there are:
  runner       Run a piece of code in the application environment (short-cut alias: "r")
 
 
-【アプリケーション作成】
+[アプリケーション作成]
 rails new (フォルダ名) -d mysql
 
-【データベース設定】
+ex.
+rails new kancolle -d mysql
+
+rails _3.2.0_ new hoge -d mysql
+
+[起動確認]
+rails server
+rails s
+
+.URL
+http://localhost:3000/[table]
+http://0.0.0.0:3000
+
+[起動エラー対処]
+・warning: Insecure world writable dir
+➡sudo chmod go-w /usr/local/bin
+
+・warning: already initialized constant APP_PATH
+(1)DB接続設定の確認
+(2)「rake rails:update:bin --trace」で詳細なログ確認
+(3)mysql2関連の対処
+sudo ln -s /usr/local/mysql-5.6.20-osx10.8-x86_64/lib/libmysqlclient.18.dylib /usr/lib/libmysqlclient.18.dylib
+
+http://qiita.com/pollseed/items/34e7d3bfd40027c53d05
+
+
+[データベース設定]
 [app]/config/database.yml
 
 
-【モデルの作成】
+[モデルの作成]
 rails generate scaffold fugas name:string number:integer
 
 ・[app]/db/migrate以下にMigrationファイル
@@ -32,16 +58,13 @@ rails generate scaffold fugas name:string number:integer
 ・[app]/app/controllers以下にcontrollerクラス
 ・[app]/app/views/[table]以下にviewクラス
 
-・マイグレーションスクリプトの実行
+
+[マイグレーションスクリプトの実行]
 rake db:create(※データベースの生成)
 rake db:migrate
 
-・起動確認
-rails server
 
-→http:localhost/3000/[table]
-
-【マイグレーション】
+[マイグレーション]
 (1)以下のコマンドでモデル関連のマイグレーションスクリプトを生成する
 rails generate model [table] [列定義]
 rails destroy model hoges [table]
@@ -49,7 +72,7 @@ rails destroy model hoges [table]
 ・[app]/db/migrate以下にMigrationファイル
 ・[app]/app/models以下にActiveRecordファイル
 
-例
+ex.
 rails generate model hoges name:string number:integer
 rails generate model ship_type ship_type:integer type_name:string
 rails generate model rarity rarity:integer expression:string
@@ -62,7 +85,7 @@ rake db:migrate
 ※rake db:version で現在のバージョン情報を確認できる
 ※手動でマイグレーションスクリプトを書き換えた場合はファイル日付をUPすればマイグレーション対象になる
 
-【初期データ追加】
+・初期データ追加
 (1)[app]/dbフォルダ以下にCSVファイルを配置。
 (2)[app]/db/seeds.rbに以下のようなコードを記述する。
 ----------------------------------------------------------
@@ -71,26 +94,67 @@ require "csv"
 CSV.foreach('db/ships.csv') do |row|
   Ship.create(:ship_no => row[0], :ship_name => row[1],
   :ship_type => row[2], :rarity => row[3])
-end  
+end
 ----------------------------------------------------------
 (3)「rake db:seed」を実行する。
 
-【コントローラーの追加】
-rails generate contlloer [コントローラー名] [アクション名] 
+・コントローラーの追加
+rails generate controller [コントローラー名] [アクション名]
 
 例
-rails generate contlloer info index
+rails generate controller info index
+rails generate controller practice index show new edit create update destroy
+
+※以下のフォルダにRubyスクリプトが生成される
+app/controllers
+app/views
+app/helpers
+app/assets/javascripts
+app/assets/stylesheets/
+test/controllers
+test/helpers
 
 
-【JavaScriptの配置】
+[Routes.rbの修正]
+(1)「config/routes.rb」に以下を追加する。
+resources :[Model名]
+
+ex.
+resources :ships
+
+(2)以下のコマンドでルーティングを確認する。
+rake routes
+
+
+[html.erbの修正]
+「app/views/(Model)」以下のhtml.erbを修正する。
+
+(1)モデルの値の入力欄の生成。
+(2)「戻る」などのリンク追加。
+
+
+[JavaScriptの配置]
 (1)[app]/app/assets/javascriptsフォルダ以下にJavaScriptを配置する。
 (2)[app]/app/assets/javascripts/application.jsに(1)のjsを追記する。
 
 
-【CSSの配置】
+[CSSの配置]
 (1)[app]/app/assets/stylesheetsフォルダ以下にCSSを配置する。
 (2)[app]/app/assets/stylesheets/application.cssに(1)のCSSを追記する。
 
+・Bootstrap
+(1)手動
+「config/initializers/assets.rb」に以下を追加する。
 
-【jQueryのセットアップ】
+Rails.application.config.assets.precompile += %w( bootstrap.css )
+
+(2)Gem
+Gemファイルに以下を追加し、「bundle install」を実行する。
+
+gem 'twitter-bootswatch-rails', '~> 3.1.1'
+gem 'twitter-bootswatch-rails-helpers'
+gem 'herubyracer'
+gem 'therubyrhino'
+
+[jQueryのセットアップ]
 rails generate jquery:install

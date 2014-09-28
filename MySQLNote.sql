@@ -45,7 +45,7 @@ ORDER BY table_schema, table_name
 SELECT * FROM INFORMATION_SCHEMA.COLUMNS
 ORDER BY table_schema, table_name, column_name
 
-SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE 
+SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
 ORDER BY table_schema, table_name, constraint_name, ordinal_position
 
 SELECT table_name, constraint_name, constraint_type
@@ -73,12 +73,12 @@ WHERE table_schema = 'develop'
 ORDER BY table_name, ordinal_position
 
 SELECT table_name, constraint_name, ordinal_position, column_name
-FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE 
+FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
 WHERE table_schema = 'develop'
 ORDER BY table_name, constraint_name, ordinal_position
 
 SELECT constraint_name, ordinal_position, column_name
-FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE 
+FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
 WHERE table_name = 'data_types'
 ORDER BY constraint_name, ordinal_position
 
@@ -94,3 +94,8 @@ SELECT table_name, constraint_name, constraint_type
 FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
 WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE')
 ORDER BY table_name, constraint_name
+
+
+[MySQL Workbench]
+・データベース作成
+CREATE NEW [schma_name];
