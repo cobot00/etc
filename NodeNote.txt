@@ -1,0 +1,16 @@
+○Node覚書
+
+
+[MongoDB]
+・mongooseのインストール
+npm install mongoose
+
+
+[npmのエラー]
+・Error: ENOENT, stat 'C:\Users\(user)\AppData\Roaming\npm'
+
+→手動でフォルダを作成する
+http://stackoverflow.com/questions/25093276/nodejs-windows-error-enoent-stat-c-users-rt-appdata-roaming-npm
+
+
+・MSBUILD : error MSB6006: "VCBuild.exe" exited with code -1

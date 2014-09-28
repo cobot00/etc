@@ -25,6 +25,28 @@ show dbs
 show collections
 
 
+[コレクション操作]
+・作成
+db.createCollection([collection_name]]);
+
+ex.
+db.createCollection("hoges");
+
+・インデックスの確認
+db.[collection].getIndexes();
+
+ex
+db.hoges.getIndexes();
+
+
+・Collectionの削除
+db.[collection].drop();
+
+ex.
+db.removes.save({title:"ex", com:"tekitou"})
+db.removes.drop();
+
+
 [データ操作]
 ・データ登録
 db.[collection].save([JSONデータ]);
@@ -56,12 +78,6 @@ db.[collection].count();
 ex.
 db.hoges.count();
 
-・Collectionの削除
-db.[collection].drop();
-
-ex.
-db.removes.save({title:"ex", com:"tekitou"})
-db.removes.drop();
 
 ・Cursor操作
 db.hoges.find().forEach()
