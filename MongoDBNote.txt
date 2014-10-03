@@ -1,10 +1,22 @@
 ○MongoDB覚書
 
+[インストール]
+brew install mongodb
+
+・バージョン確認
+mongo -version
+
+
 [DB起動方法]
+・起動
 [MONGO_HOME]/bin/mongod --dbpath (DBフォルダパス)
 
 ex.
 [MONGO_HOME]/bin/mongod --dbpath "D:\application\MongoDB 2.6 Standard\data\db"
+mongod --dbpath ~/coding/mongo/data/db
+
+・終了
+Ctrl+C
 
 
 [シェル起動]
