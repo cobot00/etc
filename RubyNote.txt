@@ -9,6 +9,7 @@ brew install rbenv-gem-rehash
 [ruby]
 rbenv install -l | grep 2.1.0
 rbenv install 2.1.0-dev
+rbenv global 2.0.0-p247
 
 rvm list known
 

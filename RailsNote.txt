@@ -20,6 +20,31 @@ In addition to those, there are:
 [アプリケーション作成]
 rails new (フォルダ名) -d mysql
 
+ex.
+rails new kancolle -d mysql
+
+rails _3.2.0_ new hoge -d mysql
+
+[起動確認]
+rails server
+rails s
+
+.URL
+http://localhost:3000/[table]
+http://0.0.0.0:3000
+
+[起動エラー対処]
+・warning: Insecure world writable dir
+➡sudo chmod go-w /usr/local/bin
+
+・warning: already initialized constant APP_PATH
+(1)DB接続設定の確認
+(2)「rake rails:update:bin --trace」で詳細なログ確認
+(3)mysql2関連の対処
+sudo ln -s /usr/local/mysql-5.6.20-osx10.8-x86_64/lib/libmysqlclient.18.dylib /usr/lib/libmysqlclient.18.dylib
+
+http://qiita.com/pollseed/items/34e7d3bfd40027c53d05
+
 
 [データベース設定]
 config/database.yml
@@ -33,14 +58,10 @@ rails generate scaffold fugas name:string number:integer
 ・app/controllers以下にcontrollerクラス
 ・app/views/[table]以下にviewクラス
 
-・マイグレーションスクリプトの実行
+
+[マイグレーションスクリプトの実行]
 rake db:create(※データベースの生成)
 rake db:migrate
-
-・起動確認
-rails server
-
-→http:localhost/3000/[table]
 
 
 [マイグレーション]
@@ -51,7 +72,7 @@ rails destroy model hoges [table]
 ・db/migrate以下にMigrationファイル
 ・app/models以下にActiveRecordファイル
 
-例
+ex.
 rails generate model hoges name:string number:integer
 rails generate model ship_type ship_type:integer type_name:string
 rails generate model rarity rarity:integer expression:string
@@ -77,36 +98,63 @@ end
 ----------------------------------------------------------
 (3)「rake db:seed」を実行する。
 
-
-[コントローラーの作成]
+・コントローラーの追加
 rails generate controller [コントローラー名] [アクション名]
 
 例
 rails generate controller info index
-rails generate controller todo index new create edit update destroy delete
+rails generate controller practice index show new edit create update destroy
+
+※以下のフォルダにRubyスクリプトが生成される
+app/controllers
+app/views
+app/helpers
+app/assets/javascripts
+app/assets/stylesheets/
+test/controllers
+test/helpers
 
 
-[ルーティング]
-・設定箇所
-config/routes.rb
+[Routes.rbの修正]
+(1)「config/routes.rb」に以下を追加する。
+resources :[Model名]
 
-・ルーティング確認
+ex.
+resources :ships
+
+(2)以下のコマンドでルーティングを確認する。
 rake routes
 
 
+[html.erbの修正]
+「app/views/(Model)」以下のhtml.erbを修正する。
+
+(1)モデルの値の入力欄の生成。
+(2)「戻る」などのリンク追加。
+
+
 [JavaScriptの配置]
-(1)app/assets/javascriptsフォルダ以下にJavaScriptを配置する。
-(2)app/assets/javascripts/application.jsに(1)のjsを追記する。
-
-・jQueryのセットアップ
-rails generate jquery:install
-
-・jQuery-UI
-app/assets/javascripts/application.jsに以下を追記する。
-
-//= require jquery.ui.all
+(1)  app/assets/javascriptsフォルダ以下にJavaScriptを配置する。
+(2)  app/assets/javascripts/application.jsに(1)のjsを追記する。
 
 
 [CSSの配置]
-(1)app/assets/stylesheetsフォルダ以下にCSSを配置する。
-(2)app/assets/stylesheets/application.cssに(1)のCSSを追記する。
+(1)  app/assets/stylesheetsフォルダ以下にCSSを配置する。
+(2)  app/assets/stylesheets/application.cssに(1)のCSSを追記する。
+
+・Bootstrap
+(1)手動
+「config/initializers/assets.rb」に以下を追加する。
+
+Rails.application.config.assets.precompile += %w( bootstrap.css )
+
+(2)Gem
+Gemファイルに以下を追加し、「bundle install」を実行する。
+
+gem 'twitter-bootswatch-rails', '~> 3.1.1'
+gem 'twitter-bootswatch-rails-helpers'
+gem 'herubyracer'
+gem 'therubyrhino'
+
+[jQueryのセットアップ]
+rails generate jquery:install
