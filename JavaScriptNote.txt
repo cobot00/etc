@@ -1,0 +1,29 @@
+
+[mocha]
+・インストール
+npm install -g mocha
+
+・バージョン確認
+mocha -V
+
+
+・実行
+mocha　[対象ファイルパス]
+mocha --reporter spec practice.js
+
+※引数無しだと、実行ディレクトリ以下にtest.jsまたはtestフォルダがないとコケる
+
+Error: cannot resolve path (or pattern) 'test'
+
+
+[Jasmine]
+・Node版インストール
+npm install -g jasmine-node
+
+jasmine-node -h
+
+・バージョン確認
+jasmine-node --version
+
+
+[QUnit]

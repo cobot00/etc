@@ -82,3 +82,21 @@ db.hoges.count();
 ・Cursor操作
 db.hoges.find().forEach()
 db.hoges.find().forEach(function(each) {print("title: " + each.title );});
+
+
+[バッチ実行]
+・JavsScriptファイルをバッチ実行
+mongo --quiet [db_name] [file_name]
+
+ex.
+mongo --quiet practice mongo_batch.js
+
+※JavaScript例
+for (var i = 1; i <= 100 ; i++) {
+    var batch_doc = {
+        idx: i,
+        name : "batch" + ("00"+i).slice(-3),
+        created_on : new Date()
+    };
+    db.batch_docs.save(batch_doc);
+}
