@@ -58,6 +58,36 @@ rails generate scaffold fugas name:string number:integer
 ・app/controllers以下にcontrollerクラス
 ・app/views/[table]以下にviewクラス
 
+・列追加
+rails g migration fugas limit_date:date
+
+※Rails4版
+rails g migration add_column_limit_date_to_tasks limit_date:date
+
+・列削除
+rails g migration RemoveNameFromTasks name:string
+
+・列定義変更
+(1)以下のコマンドでマイグレーションファイルを生成する
+
+rails g migration ChangeColumnTo[table_name]
+
+ex.
+rails g migration ChangeColumnToTasks
+
+(2)生成したマイグレーションファイルに変更内容を記述する。
+
+ex.
+class ChangeColumnToTasks < ActiveRecord::Migration
+  def change
+    change_column :tasks, :name, :string, null: false
+    change_column :tasks, :number, :integer, null: false, default: 0
+  end
+end
+
+(3)マイグレーションの実行。
+rake db:migrate
+
 
 [マイグレーションスクリプトの実行]
 rake db:create(※データベースの生成)
@@ -137,6 +167,19 @@ rake routes
 (1)  app/assets/javascriptsフォルダ以下にJavaScriptを配置する。
 (2)  app/assets/javascripts/application.jsに(1)のjsを追記する。
 
+※「turbolinks」の仕様に注意
+
+※特定のページだけで任意のJavaScriptを呼び出したい場合はerbなどに以下のように記述する
+
+(1)JavaScriptファイルをincludeする場合
+<%= javascript_include_tag "application" %>
+
+(2)任意のJavaScriptのコードを呼び出す場合
+<%= javascript_tag do %>
+  console.log('javascript_tag');
+  practice.init();
+<% end %>
+
 
 [CSSの配置]
 (1)  app/assets/stylesheetsフォルダ以下にCSSを配置する。
@@ -153,8 +196,41 @@ Gemファイルに以下を追加し、「bundle install」を実行する。
 
 gem 'twitter-bootswatch-rails', '~> 3.1.1'
 gem 'twitter-bootswatch-rails-helpers'
-gem 'herubyracer'
+gem 'less-rails'
+gem 'node'
+gem 'execjs'
+
+以下はトラブル多し。
+gem 'therubyracer'
 gem 'therubyrhino'
+
+
+(3)Railsプロジェクトへのインストール
+rails g bootstrap:install
+rails g bootstrap:layout application
+
+※エラー対応
+・「An error occurred while installing libv8」
+gem install libv8 -v '3.16.14.7' -- --with-system-v8
+
+・「Make sure that `gem install therubyracer -v '0.12.1'` succeeds before bundling.」
+
+(1)以下のURLから「therubyracer-0.11.0beta1-x86-mingw32.gem」、「v8.dll」を取得する。
+https://github.com/hiranpeiris/therubyracer_for_windows
+
+(2)(1)を「ruby/bin」以下に配置して、以下のコマンドを叩く。
+gem install therubyracer-0.11.0beta1-x86-mingw32.gem
+
 
 [jQueryのセットアップ]
 rails generate jquery:install
+
+
+[アセットパイプライン]
+・プリコンパイル
+rake assets:precompile
+
+「config/environments」以下のRubyスクリプトに以下を追記する。
+
+config.assets.compile = true
+
