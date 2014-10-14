@@ -1,0 +1,57 @@
+cocos2d-x
+
+[セットアップ]
+・setup.pyを実行し、以下のディレクトリを設定する
+
+Android SDK
+Android NDK
+iOS ANT
+
+
+[eclipseの設定]
+・「ウィンドウ -> 設定 -> 一般 -> ワークスペース -> リンクされたリソース」にCocos2d-xルートパスを追加
+
+・「ウィンドウ -> 設定 -> Android -> NDK」にAndroid NDKルートパスを追加
+
+・「ウィンドウ -> 設定 -> C/C++ -> ビルド -> 変数」にAndroid NDKルートパスを追加
+NDKROOT:ディレクトリ
+
+
+[基本コマンド]
+・プロジェクト作成
+cocos new (プロジェクト名) -p (パッケージ構成) -l cpp -d (ルートディレクトリ)
+
+ex.
+cocos new Practice -p com.cobot00.Practice -l cpp -d D:\coding\cocos2dx
+
+・コマンドラインからのビルド
+以下のフォルダに移動し、build_native.pyを実行する。
+
+(プロジェクト名)\proj.android
+
+
+[Android版プロジェクト]
+(1)eclipseで以下のフォルダを読み込んでAndroidプロジェクトを作成する
+
+(プロジェクト名)\cocos2d\cocos\platform\android\java
+
+(2)eclipseで以下のフォルダを読み込んでAndroidプロジェクトを作成する
+
+(プロジェクト名)\proj.android
+
+
+[エラー対応]
+・java.lang.UnsatisfiedLinkError: Couldn't load cocos2dcpp from loader dalvik.
+
+proj.android\assetsフォルダがないのが原因？
+Androidバージョンの問題か？
+
+proj.android\jni\Application.mkに以下を追記
+APP_ABI := armeabi armeabi-v7a x86
+
+
+[主要なコード]
+・MessageBox
+coco2dxで以下のラッパー関数が定義されている。
+
+MessageBox("メッセージ", "タイトル");
