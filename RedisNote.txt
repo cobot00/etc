@@ -1,0 +1,40 @@
+Redis覚書
+
+[インストール]
+brew install redis
+
+
+[サーバー起動]
+・起動
+redis-server
+
+・終了(対話シェルで)
+shutdown
+
+
+[対話シェル]
+・起動
+redis-cli
+
+[Sorted Set]
+・データ追加
+zadd (集合名) (キー) (値)
+
+ex.
+zadd ranking 1 user_a
+
+・データ取得
+zrange (集合名) (from) (to) [withscores]
+
+ex.
+zrange ranking 0 -1 withscores
+
+・件数カウント
+zcount (集合名) -inf +inf
+
+ex.
+zcount ranking -inf +inf
+
+・データ取得
+zscore (集合名) (値)
+
