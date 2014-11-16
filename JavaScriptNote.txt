@@ -1,3 +1,13 @@
+[型変換]
+・文字列→数値
+Number("123");
+parseInt("123", 10);
+parseFloat("123");
+
+・数値→文字列
+String(value);
+value.toString();
+
 
 [mocha]
 ・インストール

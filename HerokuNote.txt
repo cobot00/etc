@@ -54,6 +54,11 @@ heroku config:set DATABASE_URL='mysql2://b054c829c318c9:74c1a8e9@us-cdbr-iron-ea
 heroku config
 
 
+[Redis用のアドオンの登録]
+(1)以下のコマンドを実行
+heroku addons:add redistogo
+
+
 [Herokuリポジトリへの登録]
 git remote add heroku git@heroku.com:app-practice.git
 

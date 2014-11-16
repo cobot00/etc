@@ -8,7 +8,7 @@ brew install redis
 ・起動
 redis-server
 
-・終了(対話シェルで)
+・データを保存して終了(対話シェルで)
 shutdown
 
 
@@ -16,25 +16,48 @@ shutdown
 ・起動
 redis-cli
 
+・サーバーの終了
+shutdown
+
+・対話シェルの終了
+exit
+
+
 [Sorted Set]
 ・データ追加
-zadd (集合名) (キー) (値)
+ZADD (set_name) (key) (member)
 
 ex.
-zadd ranking 1 user_a
+ZADD ranking 1 user_a
+
+・データ削除
+ZREM (set_name) (member)
+
+ex.
+ZREM ranking for_rem
 
 ・データ取得
-zrange (集合名) (from) (to) [withscores]
+ZRANGE (set_name) (from) (to) [withscores]
 
 ex.
-zrange ranking 0 -1 withscores
+ZRANGE ranking 0 -1 withscores
 
 ・件数カウント
-zcount (集合名) -inf +inf
+ZCOUNT (set_name) -inf +inf
+ZCARD (set_name)
 
 ex.
-zcount ranking -inf +inf
+ZCOUNT ranking -inf +inf
+ZCARD ranking
 
-・データ取得
-zscore (集合名) (値)
+・データ取得(要素指定)
+ZSCORE (set_name) (member)
+
+
+[RubyからRedisへのアクセス]
+・gem
+gem install redis
+gem install hiredis(エラー)
+
+・Rubyのコード
 

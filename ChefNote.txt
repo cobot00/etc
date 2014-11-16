@@ -1,0 +1,34 @@
+○Vagrant+Chef
+
+[Vagrant]
+・バージョン確認
+vagrant -v
+
+・box追加
+vagrant box add [任意の名前] [取得先]
+
+※以下のサイトでBOXが公開されている
+http://www.vagrantbox.es/
+
+ex.
+vagrant box add CentOS65_64 https://---
+
+・boxの確認
+vagrant box list
+
+・初期化
+vagrant init [box]
+
+・IP変更
+Vagrantfileファイルの「config.vm.network」を変更する
+
+・仮想マシンの起動
+vagrant up
+
+・SSHで接続
+vagrant ssh
+
+※Windowsは他のSSHターミナルで接続する(Teraterm、Poderosa、etc.)
+
+・仮想マシンの停止
+vagrant halt

@@ -6,6 +6,31 @@
 npm install mongoose
 
 
+[POST送信]
+・以下をインストール
+npm install request
+
+(コードサンプル)
+------------------------------------------------------------
+var request = require('request');
+
+var options = {
+  uri: 'http://localhost:4567/',
+  headers: {'Content-Type': 'application/json'},
+  json: true,
+  body: JSON.stringify({ name: 'hoge' })
+};
+
+request.post(options, function(error, response, body){
+  if (!error && response.statusCode == 200) {
+    console.log(body.name);
+  } else {
+    console.log('error: '+ response.statusCode);
+  }
+});
+------------------------------------------------------------
+
+
 [npmのエラー]
 ・Error: ENOENT, stat 'C:\Users\(user)\AppData\Roaming\npm'
 
