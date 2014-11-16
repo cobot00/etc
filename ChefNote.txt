@@ -1,6 +1,16 @@
 ○Vagrant+Chef
 
+[VirtualBox]
+・インストール
+下記サイトからダウンロード
+https://www.virtualbox.org/wiki/Downloads
+
 [Vagrant]
+・インストール
+下記サイトからダウンロード
+https://www.vagrantup.com/
+
+
 ・バージョン確認
 vagrant -v
 
@@ -30,5 +40,17 @@ vagrant ssh
 
 ※Windowsは他のSSHターミナルで接続する(Teraterm、Poderosa、etc.)
 
+以下の操作でsshコマンドで接続可能
+vagrant ssh-config >> ~/.ssh/config
+
 ・仮想マシンの停止
 vagrant halt
+
+
+[Chef]
+・インストール
+https://www.getchef.com/download-chef-client/
+
+・CentOS
+curl -L https://www.opscode.com/chef/install.sh | sudo bash
+
