@@ -226,6 +226,13 @@ gem install therubyracer-0.11.0beta1-x86-mingw32.gem
 rails generate jquery:install
 
 
+[Bootstrapのセットアップ]
+プロジェクトのルートディレクトリで以下を実行する。
+mkdir  -p vendor/assets/stylesheets
+mkdir  -p vendor/assets/javascripts
+cp /Users/rkobori/coding/libs/Bootstrap/dist/css/bootstrap.min.css vendor/assets/stylesheets/
+cp /Users/rkobori/coding/libs/Bootstrap/dist/js/bootstrap.min.js vendor/assets/javascripts/
+
 [アセットパイプライン]
 ・プリコンパイル
 rake assets:precompile

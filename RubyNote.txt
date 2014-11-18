@@ -14,3 +14,18 @@ rbenv global 2.0.0-p247
 rvm list known
 
 rvm install ruby-2.1.1 --default
+
+
+[budlerでのローカル環境作成]
+・Gemfileの作成
+$ cat << EOS > Gemfile
+source "http://rubygems.org"
+gem "rails", "4.1.1" # ←ローカルインストールしたいRailsのバージョンを指定。指定しなければ最新版が入る。
+EOS
+
+・Railsのインストール
+bundle install --path vendor/bundle
+
+・Railsプロジェクト作成
+bundle exec rails new practice --skip-bundle
+

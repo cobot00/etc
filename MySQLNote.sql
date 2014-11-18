@@ -1,3 +1,34 @@
+[DB基本設定]
+・サーバー起動
+mysql.server start
+mysqld start
+
+※起動確認
+ps ax | grep mysql
+
+・サーバー停止
+mysql.server stop
+mysqld stop
+
+・データベース作成
+create database [database_name];
+
+・データベース一覧
+show databases;
+
+・ユーザー作成
+grant all on develop.* to 'cobot00'@'localhost';
+
+・ユーザー確認
+select host, user from mysql.user;
+
+・パスワード変更
+SET PASSWORD FOR cobot00@localhost=PASSWORD('pswd');
+
+.権限確認
+show grants;
+
+
 [ユーティリティ]
 ・MySQLのバージョン確認
 SELECT version()
