@@ -18,6 +18,9 @@ rvm install ruby-2.1.1 --default
 
 [budlerでのローカル環境作成]
 ・Gemfileの作成
+ bunler init
+
+※旧式
 $ cat << EOS > Gemfile
 source "http://rubygems.org"
 gem "rails", "4.1.1" # ←ローカルインストールしたいRailsのバージョンを指定。指定しなければ最新版が入る。
